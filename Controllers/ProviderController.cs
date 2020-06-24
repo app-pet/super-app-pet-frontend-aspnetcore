@@ -9,23 +9,23 @@ using System.Threading.Tasks;
 
 namespace SuperAppPet.Controllers
 {
-    public class UserController : Controller
+    public class ProviderController : Controller
     {
         private IConfiguration _configuration;
 
-        public UserController(IConfiguration Configuration)
+        public ProviderController(IConfiguration Configuration)
         {
             _configuration = Configuration;
         }
         public async Task<IActionResult> Index(int? validation)
         {
-            List<RootObject> userList = new List<RootObject>();
+            List<RootProviderObject> userList = new List<RootProviderObject>();
             using (var httpClient = new HttpClient())
             {
-                using (var response = await httpClient.GetAsync(_configuration["FIAP:UserAddress"]))
+                using (var response = await httpClient.GetAsync(_configuration["FIAP:ProviderAddress"]))
                 {
                     string apiResponse = response.Content.ReadAsStringAsync().Result;
-                    userList.Add(JsonConvert.DeserializeObject<RootObject>(apiResponse));
+                    userList.Add(JsonConvert.DeserializeObject<RootProviderObject>(apiResponse));
                 }
             }
 
@@ -46,7 +46,7 @@ namespace SuperAppPet.Controllers
         [HttpPost]
         public async Task<IActionResult> Add(string name, string email, string phone)
         {
-            UserDTO userDTO = new UserDTO();
+            ProviderDTO userDTO = new ProviderDTO();
             userDTO.Email = email;
             userDTO.Name = name;
             userDTO.Phone = phone;
@@ -55,7 +55,7 @@ namespace SuperAppPet.Controllers
             {
                 StringContent content = new StringContent(JsonConvert.SerializeObject(userDTO), Encoding.UTF8, "application/json");
 
-                using (var response = await httpClient.PostAsync(_configuration["FIAP:UserAddress"], content))
+                using (var response = await httpClient.PostAsync(_configuration["FIAP:ProviderAddress"], content))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                 }
@@ -67,15 +67,15 @@ namespace SuperAppPet.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(string phone)
         {
-            UserModel userModel = await getUserAsync(phone);
+            ProviderModel userModel = await getProviderAsync(phone);
 
             return View(userModel);
         }
 
         [HttpPost]
-        public async Task<IActionResult> EditUser(string name, string email, string phone)
+        public async Task<IActionResult> EditProvider(string name, string email, string phone)
         {
-            UserDTO userDTO = new UserDTO();
+            ProviderDTO userDTO = new ProviderDTO();
             userDTO.Email = email;
             userDTO.Name = name;
             userDTO.Phone = phone;
@@ -84,7 +84,7 @@ namespace SuperAppPet.Controllers
             {
                 StringContent content = new StringContent(JsonConvert.SerializeObject(userDTO), Encoding.UTF8, "application/json");
 
-                using (var response = await httpClient.PutAsync(_configuration["FIAP:UserAddress"] + userDTO.Phone, content))
+                using (var response = await httpClient.PutAsync(_configuration["FIAP:ProviderAddress"] + userDTO.Phone, content))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                 }
@@ -98,7 +98,7 @@ namespace SuperAppPet.Controllers
         {
             try
             {
-                UserModel userModel = await getUserAsync(phone);
+                ProviderModel userModel = await getProviderAsync(phone);
                 ViewData["PhoneNumber"] = userModel.Phone;
 
                 return View(userModel);
@@ -114,7 +114,7 @@ namespace SuperAppPet.Controllers
         {
             using (var httpClient = new HttpClient())
             {
-                using (var response = await httpClient.DeleteAsync(_configuration["FIAP:UserAddress"] + phoneDel))
+                using (var response = await httpClient.DeleteAsync(_configuration["FIAP:ProviderAddress"] + phoneDel))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                 }
@@ -123,15 +123,15 @@ namespace SuperAppPet.Controllers
             return RedirectToAction("Index");
         }
 
-        public async Task<UserModel> getUserAsync(string phone)
+        public async Task<ProviderModel> getProviderAsync(string phone)
         {
-            UserModel user = new UserModel();
+            ProviderModel user = new ProviderModel();
             using (var httpClient = new HttpClient())
             {
-                using (var response = await httpClient.GetAsync(_configuration["FIAP:UserAddress"] + phone))
+                using (var response = await httpClient.GetAsync(_configuration["FIAP:ProviderAddress"] + phone))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    user = JsonConvert.DeserializeObject<UserModel>(apiResponse);
+                    user = JsonConvert.DeserializeObject<ProviderModel>(apiResponse);
                 }
             }
 

@@ -1,10 +1,10 @@
 ﻿@{
-    ViewData["Title"] = "Add User";
+    ViewData["Title"] = "Add Provider";
 }
 
 <div id="main" class="container-fluid">
-    <h3 class="page-header">Add User</h3>
-    <form action='@Url.Action("Add", "User")' method="post">
+    <h3 class="page-header">Add Provider</h3>
+    <form action='@Url.Action("Add", "Provider")' method="post">
         <div class="row">
             <div class="form-group col-md-8">
                 <label for="name">Name</label>
@@ -23,7 +23,7 @@
         <div id="actions" class="row">
             <div class="col-md-12">
                 <input type="submit" class="btn btn-primary" value="Salvar">
-                <a href='@Url.Action("Index", "User")' class="btn btn-default">Voltar</a>
+                <a href='@Url.Action("Index", "Provider")' class="btn btn-default">Voltar</a>
             </div>
         </div>
     </form>

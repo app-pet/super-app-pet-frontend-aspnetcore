@@ -1,0 +1,29 @@
+﻿@model ProviderModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div id="main" class="container-fluid">
+    <h3 class="page-header">Details</h3>
+    <div class="row">
+        <div class="col-md-4">
+            <p><strong>Name</strong></p>
+            <p id="name">@Model.Phone</p>
+        </div>
+        <div class="col-md-4">
+            <p><strong>E-mail</strong></p>
+            <p id="email">@Model.Email</p>
+        </div>
+        <div class="col-md-4">
+            <p><strong>Phone</strong></p>
+            <p id="phone">@Model.Phone</p>
+        </div>
+    </div> <!-- .row -->
+</div>
+<div id="actions" class="row">
+    <div class="col-md-12" style="margin: 0.8%;">
+        <a class="btn btn-primary" href='@Url.Action("Edit", "Provider", new { Phone = ViewData["PhoneNumber"] })'>Edit</a>
+        <a href='@Url.Action("Index", "Provider")' class="btn btn-default">Voltar</a>
+    </div>
+</div>

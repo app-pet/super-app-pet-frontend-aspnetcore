@@ -1,16 +1,16 @@
-﻿@model IEnumerable<UserModel>
+﻿@model IEnumerable<ProviderModel>
 
 @{
-    ViewData["Title"] = "Users";
+    ViewData["Title"] = "Providers";
 }
 
 <div id="main" class="container-fluid" style="margin-top: 50px;">
     <div id="top" class="row">
         <div class="col-sm-3">
-            <h2>Users</h2>
+            <h2>Providers</h2>
         </div>
         <div class="col-sm-6">
-            <form action='@Url.Action("Details", "User")' method="get" class="input-group h2">
+            <form action='@Url.Action("Details", "Provider")' method="get" class="input-group h2">
                 <input name="phone" class="form-control" id="userPhone" type="text" placeholder="Type a phone" onkeypress="return somenteNumeros(event)" maxlength="12" required/>
                 <span class="input-group-btn">
                     <button type="submit" class="btn btn-primary" id="searchPhone">
@@ -21,7 +21,7 @@
             @ViewData["Message"]
         </div>
         <div class="col-sm-3">
-            <a href='@Url.Action("Add", "User")' class="btn btn-primary pull-right h2">New User</a>
+            <a href='@Url.Action("Add", "Provider")' class="btn btn-primary pull-right h2">New Provider</a>
         </div>
     </div>
     <!-- /#top -->
@@ -47,10 +47,10 @@
                             <td>@user.Phone</td>
                             <td>@user.CreatedAt</td>
                             <td class="actions">
-                                <a class="btn btn-success btn-xs" href='@Url.Action("Details", "User", new { user.Phone })'><i class="fa fa-info" aria-hidden="true"></i></a>
-                                <a class="btn btn-warning btn-xs" href='@Url.Action("Edit", "User", new { user.Phone })'><i class="fa fa-list-alt" aria-hidden="true"></i></a>
-                                <form action='@Url.Action("Delete", "User")' method="post">
-                                    <input type="text" name="phoneDel" value="@user.Phone" hidden/>
+                                <a class="btn btn-success btn-xs" href='@Url.Action("Details", "Provider", new { user.Phone })'><i class="fa fa-info" aria-hidden="true"></i></a>
+                                <a class="btn btn-warning btn-xs" href='@Url.Action("Edit", "Provider", new { user.Phone })'><i class="fa fa-list-alt" aria-hidden="true"></i></a>
+                                <form action='@Url.Action("Delete", "Provider")' method="post">
+                                    <input type="text" name="phoneDel" value="@user.Phone" hidden />
                                     <button type="submit" class="btn btn-danger btn-xs" value=""> <i class="fa fa-trash" aria-hidden="true"></i></button>
                                 </form>
                             </td>

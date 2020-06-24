@@ -28,3 +28,8 @@ C:\Users\Turing-PC\Desktop\super-app-pet-frontend-aspnetcore\obj\Debug\netcoreap
 C:\Users\Turing-PC\Desktop\super-app-pet-frontend-aspnetcore\obj\Debug\netcoreapp2.1\SuperAppPet.dll
 C:\Users\Turing-PC\Desktop\super-app-pet-frontend-aspnetcore\obj\Debug\netcoreapp2.1\SuperAppPet.pdb
 C:\Users\Turing-PC\Desktop\super-app-pet-frontend-aspnetcore\obj\Debug\netcoreapp2.1\SuperAppPet.csproj.CopyComplete
+C:\Users\Turing-PC\Desktop\super-app-pet-frontend-aspnetcore\obj\Debug\netcoreapp2.1\SuperAppPet.csprojAssemblyReference.cache
+C:\Users\Turing-PC\Desktop\super-app-pet-frontend-aspnetcore\obj\Debug\netcoreapp2.1\Razor\Views\Provider\Add.g.cshtml.cs
+C:\Users\Turing-PC\Desktop\super-app-pet-frontend-aspnetcore\obj\Debug\netcoreapp2.1\Razor\Views\Provider\Details.g.cshtml.cs
+C:\Users\Turing-PC\Desktop\super-app-pet-frontend-aspnetcore\obj\Debug\netcoreapp2.1\Razor\Views\Provider\Edit.g.cshtml.cs
+C:\Users\Turing-PC\Desktop\super-app-pet-frontend-aspnetcore\obj\Debug\netcoreapp2.1\Razor\Views\Provider\Index.g.cshtml.cs
