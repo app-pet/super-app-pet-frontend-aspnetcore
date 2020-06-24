@@ -1,0 +1,32 @@
+﻿@model UserModel
+
+@{
+    ViewData["Title"] = "Edit User";
+}
+
+<div id="main" class="container-fluid">
+    <h3 class="page-header">Editar Usuário</h3>
+    <form action='@Url.Action("EditUser", "User")' method="post">
+        <div class="row">
+            <div class="form-group col-md-8">
+                <label for="nome">Name</label>
+                <input type="text" class="form-control" name="name" maxlength="50" value="@Model.Name" required>
+            </div>
+            <div class="form-group col-md-8">
+                <label for="email">E-mail</label>
+                <input type="email" class="form-control" name="email" maxlength="50" value="@Model.Email" required>
+            </div>
+            <div class="form-group col-md-8">
+                <label for="telefone">Phone</label>
+                <input type="text" class="form-control" name="phone" value="@Model.Phone" onkeypress="return somenteNumeros(event)" maxlength="11" readonly required>
+            </div>
+        </div>
+        <hr />
+        <div id="actions" class="row">
+            <div class="col-md-12">
+                <input type="submit" class="btn btn-primary" value="Salvar" />
+                <a href='@Url.Action("Index", "User")' class="btn btn-default">Voltar</a>
+            </div>
+        </div>
+    </form>
+</div>

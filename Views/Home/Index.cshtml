@@ -1,30 +1,30 @@
 ﻿@{
-    ViewData["Title"] = "Main Page";
+    ViewData["Title"] = "Menu Principal";
 }
 
 <div class="row" style="text-align:center; font-family:Arial; font-size:medium; color:#242424;">
-   <div class="col-lg-3">
-      <div class="row">
-         <a href="#"><img src="~/images/usuarios.png" width="150" height="150" /></a>
-      </div>
-      <span>Cadastro de Usuários</span>
-   </div>
-   <div class="col-lg-3" >
-      <div class="row">
-         <a href="#"><img src="~/images/fornecedores.png" width="150" height="150" /></a>
-      </div>
-      <span>Cadastro de Fornecedores</span>
-   </div>
-   <div class="col-lg-3" >
-      <div class="row">
-         <a href="#"><img src="~/images/relatorios.png" width="150" height="150" /></a>
-      </div>
-      <span>Relatórios</span>
-   </div>
-   <div class="col-lg-3" >
-      <div class="row">
-         <a href="#"><img src="~/images/configuracoes.png" width="150" height="150" /></a>
-      </div>
-      <span>Configurações</span>
-   </div>
+    <div class="col-lg-3">
+        <div class="row">
+            <a href='@Url.Action("Index", "User")'><img src="~/images/usuarios.png" width="150" height="150" /></a>
+        </div>
+        <span>Cadastro de Usuários</span>
+    </div>
+    <div class="col-lg-3">
+        <div class="row">
+            <a href="#"><img src="~/images/fornecedores.png" width="150" height="150" /></a>
+        </div>
+        <span>Cadastro de Fornecedores</span>
+    </div>
+    <div class="col-lg-3">
+        <div class="row">
+            <a href="#"><img src="~/images/relatorios.png" width="150" height="150" /></a>
+        </div>
+        <span>Relatórios</span>
+    </div>
+    <div class="col-lg-3">
+        <div class="row">
+            <a href="#"><img src="~/images/configuracoes.png" width="150" height="150" /></a>
+        </div>
+        <span>Configurações</span>
+    </div>
 </div>

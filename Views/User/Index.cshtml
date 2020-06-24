@@ -1,0 +1,63 @@
+﻿@model IEnumerable<UserModel>
+
+@{
+    ViewData["Title"] = "Users";
+}
+
+<div id="main" class="container-fluid" style="margin-top: 50px;">
+    <div id="top" class="row">
+        <div class="col-sm-3">
+            <h2>Users</h2>
+        </div>
+        <div class="col-sm-6">
+            <form action='@Url.Action("Details", "User")' method="get" class="input-group h2">
+                <input name="phone" class="form-control" id="userPhone" type="text" placeholder="Type a phone" onkeypress="return somenteNumeros(event)" maxlength="12" />
+                <span class="input-group-btn">
+                    <button type="submit" class="btn btn-primary" id="searchPhone">
+                        <span class="fa fa-search"></span>
+                    </button>
+                </span>
+            </form>
+            @ViewData["Message"]
+        </div>
+        <div class="col-sm-3">
+            <a href='@Url.Action("Add", "User")' class="btn btn-primary pull-right h2">New User</a>
+        </div>
+    </div>
+    <!-- /#top -->
+    <hr />
+    <div id="list" class="row">
+        <div class="table-responsive col-md-12">
+            <table id="users-table" class="table table-striped" cellspacing="0" cellpAdicionaring="0">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>E-mail</th>
+                        <th>Phone</th>
+                        <th>Created At</th>
+                        <th class="actions">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var user in Model)
+                    {
+                        <tr>
+                            <td>@user.Name</td>
+                            <td>@user.Email</td>
+                            <td>@user.Phone</td>
+                            <td>@user.CreatedAt</td>
+                            <td class="actions">
+                                <a class="btn btn-success btn-xs" href='@Url.Action("Details", "User", new { user.Phone })'><i class="fa fa-info" aria-hidden="true"></i></a>
+                                <a class="btn btn-warning btn-xs" href='@Url.Action("Edit", "User", new { user.Phone })'><i class="fa fa-list-alt" aria-hidden="true"></i></a>
+                                <form action='@Url.Action("Delete", "User")' method="post">
+                                    <input type="text" name="phoneDel" value="@user.Phone" hidden/>
+                                    <button type="submit" class="btn btn-danger btn-xs" value=""> <i class="fa fa-trash" aria-hidden="true"></i></button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

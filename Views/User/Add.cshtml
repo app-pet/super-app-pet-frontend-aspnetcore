@@ -1,0 +1,30 @@
+﻿@{
+    ViewData["Title"] = "Add User";
+}
+
+<div id="main" class="container-fluid">
+    <h3 class="page-header">Add User</h3>
+    <form action='@Url.Action("Add", "User")' method="post">
+        <div class="row">
+            <div class="form-group col-md-8">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" name="name" maxlength="50" required>
+            </div>
+            <div class="form-group col-md-8">
+                <label for="email">E-mail</label>
+                <input type="email" class="form-control" name="email" maxlength="50" required>
+            </div>
+            <div class="form-group col-md-8">
+                <label for="phone">Phone</label>
+                <input type="text" class="form-control" name="phone" onkeypress="return somenteNumeros(event)" maxlength="12" required>
+            </div>
+        </div>
+        <hr />
+        <div id="actions" class="row">
+            <div class="col-md-12">
+                <input type="submit" class="btn btn-primary" value="Salvar">
+                <input type="button" href='@Url.Action("Index", "User")' class="btn btn-default" value="Voltar">
+            </div>
+        </div>
+    </form>
+</div>
