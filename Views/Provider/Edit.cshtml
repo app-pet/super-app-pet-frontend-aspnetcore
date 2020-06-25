@@ -9,6 +9,10 @@
     <form action='@Url.Action("EditProvider", "Provider")' method="post">
         <div class="row">
             <div class="form-group col-md-8">
+                <label for="nome">Services</label>
+                <input type="text" class="form-control" name="services" maxlength="50" value='@ViewData["Aux"]' required>
+            </div>
+            <div class="form-group col-md-8">
                 <label for="nome">Name</label>
                 <input type="text" class="form-control" name="name" maxlength="50" value="@Model.Name" required>
             </div>

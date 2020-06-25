@@ -8,8 +8,15 @@
     <h3 class="page-header">Details</h3>
     <div class="row">
         <div class="col-md-4">
+            <p><strong>Services</strong></p>
+            @for (int i = 0; i < Model.Services.Length; i++)
+            {
+                <p id="services">@Model.Services[i]</p> 
+            }
+        </div>
+        <div class="col-md-4">
             <p><strong>Name</strong></p>
-            <p id="name">@Model.Phone</p>
+            <p id="name">@Model.Name</p>
         </div>
         <div class="col-md-4">
             <p><strong>E-mail</strong></p>

@@ -11,7 +11,7 @@
         </div>
         <div class="col-sm-6">
             <form action='@Url.Action("Details", "Provider")' method="get" class="input-group h2">
-                <input name="phone" class="form-control" id="userPhone" type="text" placeholder="Type a phone" onkeypress="return somenteNumeros(event)" maxlength="12" required/>
+                <input name="phone" class="form-control" id="providerPhone" type="text" placeholder="Type a phone" onkeypress="return somenteNumeros(event)" maxlength="12" required />
                 <span class="input-group-btn">
                     <button type="submit" class="btn btn-primary" id="searchPhone">
                         <span class="fa fa-search"></span>
@@ -31,6 +31,7 @@
             <table id="users-table" class="table table-striped" cellspacing="0" cellpAdicionaring="0">
                 <thead>
                     <tr>
+                        <th>Services</th>
                         <th>Name</th>
                         <th>E-mail</th>
                         <th>Phone</th>
@@ -39,18 +40,25 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var user in Model)
+                    @foreach (var provider in Model)
                     {
                         <tr>
-                            <td>@user.Name</td>
-                            <td>@user.Email</td>
-                            <td>@user.Phone</td>
-                            <td>@user.CreatedAt</td>
+                            <td>
+                                @for (int i = 0; i < provider.Services.Length; i++)
+                                {
+                                    @provider.Services[i]
+                                    <br />
+                                }
+                            </td>
+                            <td>@provider.Name</td>
+                            <td>@provider.Email</td>
+                            <td>@provider.Phone</td>
+                            <td>@provider.CreatedAt</td>
                             <td class="actions">
-                                <a class="btn btn-success btn-xs" href='@Url.Action("Details", "Provider", new { user.Phone })'><i class="fa fa-info" aria-hidden="true"></i></a>
-                                <a class="btn btn-warning btn-xs" href='@Url.Action("Edit", "Provider", new { user.Phone })'><i class="fa fa-list-alt" aria-hidden="true"></i></a>
+                                <a class="btn btn-success btn-xs" href='@Url.Action("Details", "Provider", new { provider.Phone })'><i class="fa fa-info" aria-hidden="true"></i></a>
+                                <a class="btn btn-warning btn-xs" href='@Url.Action("Edit", "Provider", new { provider.Phone })'><i class="fa fa-list-alt" aria-hidden="true"></i></a>
                                 <form action='@Url.Action("Delete", "Provider")' method="post">
-                                    <input type="text" name="phoneDel" value="@user.Phone" hidden />
+                                    <input type="text" name="phoneDel" value="@provider.Phone" hidden />
                                     <button type="submit" class="btn btn-danger btn-xs" value=""> <i class="fa fa-trash" aria-hidden="true"></i></button>
                                 </form>
                             </td>

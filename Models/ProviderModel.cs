@@ -10,6 +10,9 @@ namespace SuperAppPet.Models
     }
     public class ProviderModel
     {
+        [JsonProperty("services")]
+        public string[] Services { get; set; }
+
         [JsonProperty("_id")]
         public string Id { get; set; }
 
@@ -28,6 +31,9 @@ namespace SuperAppPet.Models
 
     public class ProviderDTO
     {
+        [JsonProperty("services")]
+        public string[] Services { get; set; }
+
         [JsonProperty("name")]
         public string Name { get; set; }
 

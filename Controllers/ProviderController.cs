@@ -19,13 +19,13 @@ namespace SuperAppPet.Controllers
         }
         public async Task<IActionResult> Index(int? validation)
         {
-            List<RootProviderObject> userList = new List<RootProviderObject>();
+            List<RootProviderObject> providerList = new List<RootProviderObject>();
             using (var httpClient = new HttpClient())
             {
                 using (var response = await httpClient.GetAsync(_configuration["FIAP:ProviderAddress"]))
                 {
                     string apiResponse = response.Content.ReadAsStringAsync().Result;
-                    userList.Add(JsonConvert.DeserializeObject<RootProviderObject>(apiResponse));
+                    providerList.Add(JsonConvert.DeserializeObject<RootProviderObject>(apiResponse));
                 }
             }
 
@@ -34,7 +34,7 @@ namespace SuperAppPet.Controllers
                 ViewData["Message"] = "The phone is not registered.";
             }
 
-            return View(userList[0].Docs);
+            return View(providerList[0].Docs);
         }
 
         [HttpGet]
@@ -44,16 +44,19 @@ namespace SuperAppPet.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Add(string name, string email, string phone)
+        public async Task<IActionResult> Add(string services, string name, string email, string phone)
         {
-            ProviderDTO userDTO = new ProviderDTO();
-            userDTO.Email = email;
-            userDTO.Name = name;
-            userDTO.Phone = phone;
+            string[] myArray = services.Split(new char[] { ';' });
+
+            ProviderDTO providerDTO = new ProviderDTO();
+            providerDTO.Services = myArray;
+            providerDTO.Email = email;
+            providerDTO.Name = name;
+            providerDTO.Phone = phone;
 
             using (var httpClient = new HttpClient())
             {
-                StringContent content = new StringContent(JsonConvert.SerializeObject(userDTO), Encoding.UTF8, "application/json");
+                StringContent content = new StringContent(JsonConvert.SerializeObject(providerDTO), Encoding.UTF8, "application/json");
 
                 using (var response = await httpClient.PostAsync(_configuration["FIAP:ProviderAddress"], content))
                 {
@@ -67,24 +70,36 @@ namespace SuperAppPet.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(string phone)
         {
-            ProviderModel userModel = await getProviderAsync(phone);
+            ProviderModel providerModel = await getProviderAsync(phone);
 
-            return View(userModel);
+            var aux = "";
+
+            foreach (string values in providerModel.Services)
+            {
+                aux += values + ";";
+            }
+
+            ViewData["Aux"] = aux;
+
+            return View(providerModel);
         }
 
         [HttpPost]
-        public async Task<IActionResult> EditProvider(string name, string email, string phone)
+        public async Task<IActionResult> EditProvider(string services, string name, string email, string phone)
         {
-            ProviderDTO userDTO = new ProviderDTO();
-            userDTO.Email = email;
-            userDTO.Name = name;
-            userDTO.Phone = phone;
+            string[] myArray = services.Split(new char[] { ';' });
+
+            ProviderDTO providerDTO = new ProviderDTO();
+            providerDTO.Services = myArray;
+            providerDTO.Email = email;
+            providerDTO.Name = name;
+            providerDTO.Phone = phone;
 
             using (var httpClient = new HttpClient())
             {
-                StringContent content = new StringContent(JsonConvert.SerializeObject(userDTO), Encoding.UTF8, "application/json");
+                StringContent content = new StringContent(JsonConvert.SerializeObject(providerDTO), Encoding.UTF8, "application/json");
 
-                using (var response = await httpClient.PutAsync(_configuration["FIAP:ProviderAddress"] + userDTO.Phone, content))
+                using (var response = await httpClient.PutAsync(_configuration["FIAP:ProviderAddress"] + providerDTO.Phone, content))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                 }
@@ -98,10 +113,10 @@ namespace SuperAppPet.Controllers
         {
             try
             {
-                ProviderModel userModel = await getProviderAsync(phone);
-                ViewData["PhoneNumber"] = userModel.Phone;
+                ProviderModel providerModel = await getProviderAsync(phone);
+                ViewData["PhoneNumber"] = providerModel.Phone;
 
-                return View(userModel);
+                return View(providerModel);
             }
             catch
             {
@@ -125,17 +140,17 @@ namespace SuperAppPet.Controllers
 
         public async Task<ProviderModel> getProviderAsync(string phone)
         {
-            ProviderModel user = new ProviderModel();
+            ProviderModel provider = new ProviderModel();
             using (var httpClient = new HttpClient())
             {
                 using (var response = await httpClient.GetAsync(_configuration["FIAP:ProviderAddress"] + phone))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    user = JsonConvert.DeserializeObject<ProviderModel>(apiResponse);
+                    provider = JsonConvert.DeserializeObject<ProviderModel>(apiResponse);
                 }
             }
 
-            return user;
+            return provider;
         }
     }
 }

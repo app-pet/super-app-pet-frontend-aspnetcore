@@ -7,6 +7,10 @@
     <form action='@Url.Action("Add", "Provider")' method="post">
         <div class="row">
             <div class="form-group col-md-8">
+                <label for="name">Services</label>
+                <input type="text" class="form-control" name="services" maxlength="50" required placeholder="Type the services separated by ';'">
+            </div>
+            <div class="form-group col-md-8">
                 <label for="name">Name</label>
                 <input type="text" class="form-control" name="name" maxlength="50" required>
             </div>
