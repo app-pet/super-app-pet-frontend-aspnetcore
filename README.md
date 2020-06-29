@@ -10,3 +10,8 @@ Tecnologias Utilizadas: <p>
 ```
 dotnet run --project SuperAppPet
 ```
+
+## Run Docker
+```
+docker run -d -p 8080:80 --name superapppet <<usuario_docker>>/superapppet-frontend
+```
