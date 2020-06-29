@@ -13,5 +13,5 @@ dotnet run --project SuperAppPet
 
 ## Run Docker
 ```
-docker run -d -p 8080:80 --name superapppet <<usuario_docker>>/superapppet-frontend
+docker run -d -p 8080:80 --name superapppet william0503/superapppet-frontend
 ```
