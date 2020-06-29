@@ -5,3 +5,8 @@ Tecnologias Utilizadas: <p>
   - [x] .Net Core <p>
   - [x] CSS <p>
   - [x] HTML <p>
+
+## Run 
+```
+dotnet run --project SuperAppPet
+```
